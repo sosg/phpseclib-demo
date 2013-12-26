@@ -1,21 +1,48 @@
-## Laravel PHP Framework
+## Description
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
+This project is to demonstrate [phpseclib issue #217](https://github.com/phpseclib/phpseclib/pull/217).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+### Steps
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+- Install laravel
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+`composer create-project laravel/laravel --prefer-dist phpseclib-demo`
 
-## Official Documentation
+- Create package workbench
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+`./artisan workbench --resources sumardi/phpseclibtest`
 
-### Contributing To Laravel
+- Edit `/workbench/sumardi/phpseclib-demo/composer.json`
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+```
+...
+"require": {
+    "php": ">=5.3.0",
+    "phpseclib/phpseclib": "dev-master"
+},
+...
+```
 
-### License
+- Run `composer install` in the package workbench
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+```
+cd workbench/sumardi/phpseclib-demo
+composer install
+```
+
+- Open the page and fatal error.
+
+`Fatal error: Cannot redeclare crypt_random_string()`
+
+### Call stack
+
+```
+Call Stack
+#	Time	Memory	Function	Location
+1	0.0008	648232	{main}( )	../index.php:0
+2	0.0010	657400	require( 'phpseclib-demo/bootstrap/autoload.php' )	../index.php:21
+3	0.0083	2004928	Illuminate\Workbench\Starter::start( )	../autoload.php:74
+4	0.0194	3405304	Illuminate\Filesystem\Filesystem->requireOnce( )	../Starter.php:29
+5	0.0195	3408368	require_once( 'phpseclib-demo/workbench/sumardi/phpseclibtest/vendor/autoload.php' )	../Filesystem.php:70
+6	0.0196	3434600	ComposerAutoloaderInitb05f640e14d21ed9bdcfc08f7640821b::getLoader( )	../autoload.php:7
+```
