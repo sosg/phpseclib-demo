@@ -1,0 +1,23 @@
+{
+    "name": "sumardi/phpseclibtest",
+    "description": "",
+    "authors": [
+        {
+            "name": "Sumardi Shukor",
+            "email": "me@sumardi.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "phpseclib/phpseclib": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Sumardi\\Phpseclibtest\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
