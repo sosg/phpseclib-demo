@@ -26,7 +26,7 @@ This project is to demonstrate [phpseclib issue #217](https://github.com/phpsecl
 - Run `composer install` in the package workbench
 
 ```
-cd workbench/sumardi/phpseclib-demo
+cd workbench/sumardi/phpseclibtest
 composer install
 ```
 
