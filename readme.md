@@ -30,7 +30,7 @@ cd workbench/sumardi/phpseclibtest
 composer install
 ```
 
-- Open the page and fatal error.
+- Open the URL `/public/index.php`.
 
 `Fatal error: Cannot redeclare crypt_random_string()`
 
