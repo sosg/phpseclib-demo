@@ -12,7 +12,7 @@ This project is to demonstrate [phpseclib issue #217](https://github.com/phpsecl
 
 `./artisan workbench --resources sumardi/phpseclibtest`
 
-- Edit `/workbench/sumardi/phpseclib-demo/composer.json`
+- Edit `/workbench/sumardi/phpseclibtest/composer.json`
 
 ```
 ...
